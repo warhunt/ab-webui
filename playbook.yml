@@ -5,3 +5,4 @@
   - apt
   - ntp
   - monit
+  - rsyslog

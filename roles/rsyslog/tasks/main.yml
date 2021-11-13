@@ -1,0 +1,10 @@
+---
+# tasks file for rsyslog
+- name: Add rsyslog stable repository from PPA
+  apt_repository:
+    repo: ppa:adiscon/v8-devel
+
+- name: Update the repository cache and install package "rsyslog" to latest version
+  apt:
+    name: rsyslog
+    update_cache: yes
