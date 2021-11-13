@@ -8,3 +8,30 @@
   apt:
     name: rsyslog
     update_cache: yes
+  notify:
+    - Restart rsyslog
+
+- name: Replace line in /etc/rsyslog.conf
+  lineinfile: 
+    path: /etc/rsyslog.conf
+    regexp: '{{ item.regexp }}' 
+    line: '{{ item.line }}'
+    backrefs: yes
+  with_items: '{{ line_to_replace }}'
+  notify:
+    - Restart rsyslog
+
+- name: Copy json_temp to /etc/rsyslog.d
+  copy:
+    src: "{{ json_temp }}.conf"
+    dest: /etc/rsyslog.d/
+  notify:
+    - Restart rsyslog
+
+- name: Template a file to /etc/rsyslog.d
+  template:
+    src: sys-log.j2
+    dest: /etc/rsyslog.d/sys-log.conf
+  notify:
+    - Restart rsyslog
+    
