@@ -1,0 +1,7 @@
+---
+- hosts: webui
+  become: yes
+  roles:
+  - apt
+  - ntp
+  - monit

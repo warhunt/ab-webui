@@ -1,0 +1,23 @@
+---
+# tasks file for monit
+
+- name: Install monit
+  apt: 
+    name: monit
+    state: present
+  notify:
+    - Restart monit
+
+- name: Replace line in /etc/monit/monitrc
+  lineinfile: 
+    path: /etc/monit/monitrc
+    regexp: '{{ item.regexp }}' 
+    line: '{{ item.line }}'
+    backrefs: yes
+  with_items: '{{ line_to_replace }}'
+  notify:
+    - Restart monit
+
+
+
+
