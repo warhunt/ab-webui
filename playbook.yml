@@ -6,4 +6,5 @@
   - ntp
   - monit
   - rsyslog
+  - kibana
   - nginx
