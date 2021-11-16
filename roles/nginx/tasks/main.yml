@@ -6,3 +6,18 @@
     state: latest
   notify:
     - Restart nginx
+
+- name: copy the nginx config file and restart nginx
+  copy:
+    src: kibana.cfg
+    dest: /etc/nginx/sites-available/kibana.cfg
+  notify:
+    - Restart nginx
+
+- name: create symlink
+  file:
+    src: /etc/nginx/sites-available/kibana.cfg
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+  notify:
+    - Restart nginx
