@@ -4,7 +4,7 @@
   roles:
   - apt
   - ntp
-  - monit
   - rsyslog
   - kibana
   - nginx
+  - monit
